@@ -7,21 +7,12 @@ import {
 } from "react-router-dom";
 import React from "react";
 import "./App.css";
+import Navbar from "./components/layout/Navbar";
 
 function MainLayout() {
   return (
     <div>
-      <nav className="flex justify-center space-x-4 mt-4">
-        <Link to="/" className="text-blue-500">
-          Home
-        </Link>
-        <Link to="/post/1" className="text-blue-500">
-          Post
-        </Link>
-        <Link to="/other" className="text-blue-500">
-          Other
-        </Link>
-      </nav>
+      <Navbar />
       <div className="mt-8">
         <Outlet />
       </div>
@@ -32,17 +23,6 @@ function MainLayout() {
 function AuthLayout() {
   return (
     <div>
-      <nav className="flex justify-center space-x-4 mt-4">
-        <Link to="/" className="text-blue-500">
-          Home
-        </Link>
-        <Link to="/post/1" className="text-blue-500">
-          Post
-        </Link>
-        <Link to="/other" className="text-blue-500">
-          Other
-        </Link>
-      </nav>
       <div className="mt-8">
         <Outlet />
       </div>
