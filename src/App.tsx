@@ -1,7 +1,6 @@
 import {
   createBrowserRouter,
   RouterProvider,
-  Route,
   Link,
   Outlet,
   useParams,
@@ -9,10 +8,7 @@ import {
 import React from "react";
 import "./App.css";
 
-function MainLayout({}: // children,
-{
-  // children: React.ReactNode;
-}) {
+function MainLayout() {
   return (
     <div>
       <nav className="flex justify-center space-x-4 mt-4">
