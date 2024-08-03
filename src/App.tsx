@@ -1,30 +1,83 @@
-import {
-  createBrowserRouter,
-  RouterProvider,
-  Link,
-  Outlet,
-  useParams,
-} from "react-router-dom";
+import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
 import React from "react";
 import "./App.css";
+import Navbar from "./components/layout/Navbar";
+import Footer from "./components/layout/Footer";
+import Home from "./pages/home";
+import ArticlePage from "./pages/singleArticle";
+
+import { useEffect } from "react";
+import { useLocation } from "react-router-dom";
 
 function MainLayout() {
   return (
     <div>
-      <nav className="flex justify-center space-x-4 mt-4">
-        <Link to="/" className="text-blue-500">
-          Home
-        </Link>
-        <Link to="/post/1" className="text-blue-500">
-          Post
-        </Link>
-        <Link to="/other" className="text-blue-500">
-          Other
-        </Link>
-      </nav>
-      <div className="mt-8">
+      <ScrollToTop />
+      <Navbar />
+      <div className="mt-8 min-h-screen">
         <Outlet />
       </div>
+      <Footer />
+    </div>
+  );
+}
+
+const router = createBrowserRouter([
+  {
+    path: "",
+    element: <MainLayout />,
+    children: [
+      {
+        path: "/",
+        element: <Home />,
+      },
+      {
+        path: "/article/:id",
+        element: <ArticlePage />,
+      },
+
+      {
+        path: "/articles",
+        element: <Home />,
+      },
+      {
+        path: "*",
+        element: <NotFoundPage />,
+      },
+    ],
+  },
+  {
+    path: "dashboard",
+    element: <DashboardLayout />,
+    children: [
+      {
+        path: "",
+        element: <DashboardPage />,
+      },
+    ],
+  },
+  {
+    path: "auth",
+    element: <AuthLayout />,
+    children: [
+      {
+        path: "login",
+        element: <LoginPage />,
+      },
+      {
+        path: "register",
+        element: <RegisterPage />,
+      },
+    ],
+  },
+]);
+
+function DashboardLayout() {
+  return (
+    <div>
+      <h1 className="text-4xl font-bold text-center text-heading font-raleway mt-20">
+        <Outlet />
+      </h1>
     </div>
   );
 }
@@ -32,72 +85,38 @@ function MainLayout() {
 function AuthLayout() {
   return (
     <div>
-      <nav className="flex justify-center space-x-4 mt-4">
-        <Link to="/" className="text-blue-500">
-          Home
-        </Link>
-        <Link to="/post/1" className="text-blue-500">
-          Post
-        </Link>
-        <Link to="/other" className="text-blue-500">
-          Other
-        </Link>
-      </nav>
-      <div className="mt-8">
+      <h1 className="text-4xl font-bold text-center text-heading font-raleway mt-20">
         <Outlet />
-      </div>
-    </div>
-  );
-}
-
-const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <MainLayout />,
-    children: [
-      {
-        path: "/",
-        element: <HomePage />,
-      },
-      {
-        path: "/post/:id",
-        element: <SinglePostPage />,
-      },
-      {
-        path: "/other",
-        element: <OtherLayout />,
-      },
-    ],
-  },
-]);
-
-function HomePage() {
-  return (
-    <div>
-      <h1 className="text-4xl font-bold text-center text-heading font-raleway mt-20">
-        Home
       </h1>
     </div>
   );
 }
 
-function SinglePostPage() {
-  const { id } = useParams();
-  console.log(id);
+function LoginPage() {
   return (
     <div>
       <h1 className="text-4xl font-bold text-center text-heading font-raleway mt-20">
-        Single Post
+        Login Page
       </h1>
     </div>
   );
 }
 
-function OtherLayout() {
+function RegisterPage() {
   return (
     <div>
       <h1 className="text-4xl font-bold text-center text-heading font-raleway mt-20">
-        Other Layout
+        Register Page
+      </h1>
+    </div>
+  );
+}
+
+function DashboardPage() {
+  return (
+    <div>
+      <h1 className="text-4xl font-bold text-center text-heading font-raleway mt-20">
+        Dashboard Page
       </h1>
     </div>
   );
@@ -112,6 +131,17 @@ function NotFoundPage() {
     </div>
   );
 }
+
+const ScrollToTop = () => {
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, [pathname]);
+
+  return null;
+};
+
 function App() {
   return (
     <div>
