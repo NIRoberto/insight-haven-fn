@@ -8,24 +8,18 @@ import {
 import React from "react";
 import "./App.css";
 import Navbar from "./components/layout/Navbar";
+import Footer from "./components/layout/Footer";
+import Home from "./pages/home";
+import ArticlePage from "./pages/singleArticle";
 
 function MainLayout() {
   return (
     <div>
       <Navbar />
-      <div className="mt-8">
+      <div className="mt-8 min-h-screen">
         <Outlet />
       </div>
-    </div>
-  );
-}
-
-function AuthLayout() {
-  return (
-    <div>
-      <div className="mt-8">
-        <Outlet />
-      </div>
+      <Footer />
     </div>
   );
 }
@@ -37,11 +31,11 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: <HomePage />,
+        element: <Home />,
       },
       {
-        path: "/post/:id",
-        element: <SinglePostPage />,
+        path: "/article/:id",
+        element: <ArticlePage />,
       },
       {
         path: "/other",
@@ -50,28 +44,6 @@ const router = createBrowserRouter([
     ],
   },
 ]);
-
-function HomePage() {
-  return (
-    <div>
-      <h1 className="text-4xl font-bold text-center text-heading font-raleway mt-20">
-        Home
-      </h1>
-    </div>
-  );
-}
-
-function SinglePostPage() {
-  const { id } = useParams();
-  console.log(id);
-  return (
-    <div>
-      <h1 className="text-4xl font-bold text-center text-heading font-raleway mt-20">
-        Single Post
-      </h1>
-    </div>
-  );
-}
 
 function OtherLayout() {
   return (
