@@ -318,6 +318,7 @@ const LatestArticles: React.FC = () => {
                 title={article.title}
                 summary={article.summary}
                 author={article.author.name}
+                id={article.id}
               />
             ))}
           </ul>

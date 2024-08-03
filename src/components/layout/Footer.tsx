@@ -8,7 +8,6 @@ import {
 } from "react-icons/fa";
 
 const Footer: React.FC = () => {
-  // Define navigation and social media items using arrays
   const navItems = [
     { path: "/", label: "Home" },
     { path: "/articles", label: "Articles" },
@@ -25,62 +24,110 @@ const Footer: React.FC = () => {
   ];
 
   return (
-    <footer className="bg-sectionBg text-heading py-8">
-      <div className="container mx-auto px-4 lg:px-8 flex flex-col lg:flex-row lg:justify-between lg:items-center">
-        {/* Logo and Copyright */}
-        <div className="flex flex-col items-center lg:items-start mb-8 lg:mb-0">
-          <h2 className="text-2xl font-bold mb-2">Insight Haven</h2>
+    <footer className="bg-gray-900 text-gray-300 py-10">
+      <div className="container mx-w-[80%] px-4 lg:px-8">
+        <div className="grid grid-cols-1 md:grid-cols-2  lg:grid-cols-4 gap-8">
+          {/* About Section */}
+          <div>
+            <h2 className="text-2xl font-bold mb-4 text-white">
+              Insight Haven
+            </h2>
+            <p className="text-sm mb-4">
+              Insight Haven is your go-to source for the latest insights and
+              trends in technology, science, and innovation. Stay updated with
+              our expert articles and engaging content.
+            </p>
+            <h3 className="text-lg font-semibold mb-2 text-white">Follow Us</h3>
+            <div className="flex space-x-4">
+              {socialMediaItems.map((item) => (
+                <a
+                  key={item.href}
+                  href={item.href}
+                  className="text-gray-400 hover:text-white transition-colors"
+                  aria-label={item.label}
+                >
+                  {item.icon}
+                </a>
+              ))}
+            </div>
+          </div>
+
+          {/* Navigation Links */}
+          <div>
+            <h3 className="text-lg font-semibold mb-4 text-white">
+              Quick Links
+            </h3>
+            <ul>
+              {navItems.map((item) => (
+                <li key={item.path} className="mb-2">
+                  <Link
+                    to={item.path}
+                    className="hover:text-white transition-colors"
+                  >
+                    {item.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Newsletter Signup */}
+          <div>
+            <h3 className="text-lg font-semibold mb-4 text-white">
+              Subscribe to Our Newsletter
+            </h3>
+            <p className="text-sm mb-4">
+              Get the latest updates and articles directly to your inbox.
+            </p>
+            <form className="flex flex-col p-4 sm:flex-row">
+              <input
+                type="email"
+                placeholder="Your email address"
+                className="p-2 rounded-md border border-gray-600 focus:outline-none focus:ring-2 focus:ring-gray-500 mb-2 sm:mb-0 sm:mr-2 w-[100%] sm:w-[100%]"
+              />
+              <button
+                type="submit"
+                className="bg-gray-700 text-white py-2 px-4 rounded-md hover:bg-gray-600 transition-colors"
+              >
+                Subscribe
+              </button>
+            </form>
+          </div>
+
+          {/* Contact Information */}
+          <div>
+            <h3 className="text-lg font-semibold mb-4 text-white">
+              Contact Us
+            </h3>
+            <ul className="text-sm">
+              <li className="mb-2">
+                <strong>Email:</strong> contact@insighthaven.com
+              </li>
+              <li className="mb-2">
+                <strong>Phone:</strong> +1 234 567 890
+              </li>
+              <li className="mb-2">
+                <strong>Address:</strong> 123 Tech Lane, Silicon Valley, CA
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        {/* Footer Bottom */}
+        <div className="border-t border-gray-700 mt-8 pt-4 flex flex-col sm:flex-row justify-between items-center">
           <p className="text-sm">© 2024 Insight Haven. All rights reserved.</p>
-        </div>
-
-        {/* Navigation Links */}
-        <div className="flex flex-col lg:flex-row lg:space-x-8 mb-8 lg:mb-0">
-          {navItems.map((item) => (
-            <Link
-              key={item.path}
-              to={item.path}
-              className="py-2 px-4 rounded-md text-center hover:bg-btnHover transition-colors"
-            >
-              {item.label}
-            </Link>
-          ))}
-        </div>
-
-        {/* Newsletter Signup */}
-        <div className="flex flex-col items-center lg:items-end">
-          <h3 className="text-lg font-semibold mb-2">
-            Subscribe to Our Newsletter
-          </h3>
-          <form className="flex flex-col lg:flex-row w-full max-w-sm">
-            <input
-              type="email"
-              placeholder="Your email address"
-              className="p-2 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-btnHover mb-2 lg:mb-0 lg:mr-2 w-full lg:w-auto"
-            />
-            <button
-              type="submit"
-              className="bg-btnHover text-white py-2 px-4 rounded-md hover:bg-btnHover transition-colors"
-            >
-              Subscribe
-            </button>
-          </form>
-        </div>
-      </div>
-
-      {/* Social Media Links */}
-      <div className="bg-sectionBg text-heading py-4 mt-8">
-        <div className="container mx-auto flex flex-col lg:flex-row lg:justify-center space-y-4 lg:space-y-0 lg:space-x-6">
-          {socialMediaItems.map((item) => (
-            <a
-              key={item.href}
-              href={item.href}
-              className="text-btnHover hover:text-white transition-colors flex items-center"
-              aria-label={item.label}
-            >
-              <span className="mr-2 text-lg">{item.icon}</span>
-              <span className="hidden lg:inline">{item.label}</span>
-            </a>
-          ))}
+          <div className="flex space-x-4 mt-4 sm:mt-0">
+            {socialMediaItems.map((item) => (
+              <a
+                key={item.href}
+                href={item.href}
+                className="text-gray-400 hover:text-white transition-colors"
+                aria-label={item.label}
+              >
+                {item.icon}
+              </a>
+            ))}
+          </div>
         </div>
       </div>
     </footer>

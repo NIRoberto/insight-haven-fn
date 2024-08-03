@@ -101,7 +101,7 @@ const ArticlePage: React.FC = () => {
         <img
           src={article.image}
           alt={article.title}
-          className="w-full h-64 object-cover rounded-t-lg"
+          className="w-full h-80 object-cover rounded-t-lg"
         />
         <div className="p-4">
           <h1 className="text-3xl font-bold mb-4">{article.title}</h1>

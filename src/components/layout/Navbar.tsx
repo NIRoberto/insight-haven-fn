@@ -1,8 +1,9 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
 
   const toggleMenu = () => setIsOpen(!isOpen);
 
@@ -10,13 +11,12 @@ const Navbar: React.FC = () => {
   const navItems = [
     { path: "/", label: "Home" },
     { path: "/articles", label: "Articles" },
-    { path: "/categories", label: "Categories" },
-    { path: "/profile", label: "Profile" },
-    { path: "/help", label: "Help" },
+    // { path: "/categories", label: "Categories" },
+    // { path: "/help", label: "Help" },
   ];
 
   return (
-    <nav className="bg-sectionBg text-heading">
+    <nav className="bg-white shadow-md text-heading p-2">
       <div className="container mx-auto flex items-center justify-between p-4">
         {/* Logo */}
         <div className="flex items-center">
@@ -25,28 +25,38 @@ const Navbar: React.FC = () => {
 
         {/* Menu Items (Desktop) */}
         <div className="hidden lg:flex flex-grow justify-center space-x-6">
-          {navItems.slice(0, 3).map((item) => (
-            <Link
+          {navItems.map((item) => (
+            <NavLink
               key={item.path}
               to={item.path}
-              className="py-2 px-4 rounded-md hover:bg-btnHover transition-colors"
+              className={({ isActive }) => {
+                return isActive
+                  ? "border-b-2 border-btnHover py-1"
+                  : "hover:border-b-2 hover:border-btnHover py-1";
+              }}
             >
               {item.label}
-            </Link>
+            </NavLink>
           ))}
         </div>
 
         {/* Auth and Profile (Desktop) */}
         <div className="hidden lg:flex items-center space-x-6">
-          {navItems.slice(3).map((item) => (
+          {isAuthenticated ? (
             <Link
-              key={item.path}
-              to={item.path}
-              className="py-2 px-4 rounded-md hover:bg-btnHover transition-colors"
+              to="/profile"
+              className="py-2 px-4 rounded-md bg-btnHover text-white hover:bg-btnHoverDark transition-colors"
             >
-              {item.label}
+              Profile
             </Link>
-          ))}
+          ) : (
+            <Link
+              to="/login"
+              className="py-2 px-4 rounded-md bg-btnHover text-white hover:bg-btnHoverDark transition-colors"
+            >
+              Login
+            </Link>
+          )}
         </div>
 
         {/* Mobile Menu Button */}
@@ -72,6 +82,23 @@ const Navbar: React.FC = () => {
             {item.label}
           </Link>
         ))}
+        <div className="mt-4">
+          {isAuthenticated ? (
+            <Link
+              to="/profile"
+              className="block py-2 px-4 rounded-md bg-btnHover text-white hover:bg-btnHoverDark transition-colors"
+            >
+              Profile
+            </Link>
+          ) : (
+            <Link
+              to="/login"
+              className="block py-2 px-4 rounded-md bg-btnHover text-white hover:bg-btnHoverDark transition-colors"
+            >
+              Login
+            </Link>
+          )}
+        </div>
       </div>
     </nav>
   );
