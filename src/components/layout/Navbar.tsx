@@ -4,10 +4,8 @@ import { Link, NavLink } from "react-router-dom";
 const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
-
   const toggleMenu = () => setIsOpen(!isOpen);
 
-  // Define navigation items
   const navItems = [
     { path: "/", label: "Home" },
     { path: "/articles", label: "Articles" },
@@ -39,35 +37,29 @@ const Navbar: React.FC = () => {
             </NavLink>
           ))}
         </div>
-
-        {/* Auth and Profile (Desktop) */}
         <div className="hidden lg:flex items-center space-x-6">
           {isAuthenticated ? (
             <Link
-              to="/profile"
+              to="/auth/profile"
               className="py-2 px-4 rounded-md bg-btnHover text-white hover:bg-btnHoverDark transition-colors"
             >
               Profile
             </Link>
           ) : (
             <Link
-              to="/login"
+              to="/auth/login"
               className="py-2 px-4 rounded-md bg-btnHover text-white hover:bg-btnHoverDark transition-colors"
             >
               Login
             </Link>
           )}
         </div>
-
-        {/* Mobile Menu Button */}
         <div className="lg:hidden">
           <button onClick={toggleMenu} className="text-heading text-2xl">
             {isOpen ? "✖️" : "☰"}
           </button>
         </div>
       </div>
-
-      {/* Mobile Menu */}
       <div
         className={`lg:hidden ${
           isOpen ? "block" : "hidden"

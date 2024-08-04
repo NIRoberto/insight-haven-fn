@@ -1,7 +1,6 @@
 export const formatDate = (dateString: string): string => {
   const date = new Date(dateString);
 
-  // Define the formatting options
   const options: Intl.DateTimeFormatOptions = {
     year: "numeric",
     month: "long",

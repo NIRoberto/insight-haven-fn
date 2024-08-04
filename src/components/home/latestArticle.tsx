@@ -4,7 +4,7 @@ import ArticleCard from "./articleCard";
 import FeaturedArticleCard from "./featuredcard";
 import CategoryCard from "./categoryCard";
 
-const articles: Article[] = [
+export const articles: Article[] = [
   {
     id: "1",
     title: "The Future of AI in 2025",
@@ -85,10 +85,8 @@ const articles: Article[] = [
       },
     ],
   },
-  // Add more articles here...
 ];
-
-const categories: Category[] = [
+export const categories: Category[] = [
   {
     id: "cat1",
     name: "AI & Machine Learning",
