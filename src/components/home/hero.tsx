@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 import { formatDate } from "../../utils/dateformat";
 import { articles } from "./latestArticle";
+import { Link } from "react-router-dom";
 
 const HeroSection: React.FC = () => {
   const [activeIndex, setActiveIndex] = useState<number>(0);
@@ -62,29 +63,31 @@ const HeroSection: React.FC = () => {
               >
                 {index + 1}
               </h1>
-              <div className="flex-1 ml-4">
-                <button
-                  className={`w-full text-left text-heading  text-xl   ${
-                    index === activeIndex ? "font-bold" : ""
-                  }`}
-                  onClick={() => setActiveIndex(index)}
-                >
-                  {article.title}
-                </button>
-                {index === activeIndex && (
-                  <div className="mt-2 text-md">
-                    <p>{article.summary}</p>
-                    <div className="flex items-center justify-between mt-4">
-                      <p className="text-sm">
-                        {article.author.name} |{formatDate(article.date)}
-                      </p>
-                      <button className="text-sm text-buttonBg font-semibold">
-                        Read More
-                      </button>
+              <Link to={`/article/${article.id}`}>
+                <div className="flex-1 ml-4">
+                  <button
+                    className={`w-full text-left text-heading  text-xl   ${
+                      index === activeIndex ? "font-bold" : ""
+                    }`}
+                    onClick={() => setActiveIndex(index)}
+                  >
+                    {article.title}
+                  </button>
+                  {index === activeIndex && (
+                    <div className="mt-2 text-md">
+                      <p>{article.summary}</p>
+                      <div className="flex items-center justify-between mt-4">
+                        <p className="text-sm">
+                          {article.author.name} |{formatDate(article.date)}
+                        </p>
+                        <button className="text-sm text-buttonBg font-semibold">
+                          Read More
+                        </button>
+                      </div>
                     </div>
-                  </div>
-                )}
-              </div>
+                  )}
+                </div>
+              </Link>
             </div>
           ))}
         </div>
