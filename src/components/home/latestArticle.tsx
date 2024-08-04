@@ -85,6 +85,98 @@ export const articles: Article[] = [
       },
     ],
   },
+  {
+    id: "3",
+    title: "The Rise of Quantum Computing",
+    summary:
+      "An overview of quantum computing technology and its potential applications.",
+    content: "<p>Quantum computing is a revolutionary technology...</p>",
+    author: {
+      id: "author2",
+      name: "John Doe",
+      bio: "Tech writer and AI expert",
+      profileImage:
+        "https://miro.medium.com/v2/resize:fit:1100/format:webp/1*mtjwbFnS2U6LuDvciBz13g@2x.jpeg",
+    },
+    date: "2024-08-02T10:00:00Z",
+    category: { id: "cat2", name: "Quantum Computing" },
+    createdAt: "2024-08-02T10:00:00Z",
+    updatedAt: "2024-08-02T10:00:00Z",
+    image:
+      "https://miro.medium.com/v2/resize:fit:1100/format:webp/1*mtjwbFnS2U6LuDvciBz13g@2x.jpeg",
+    comments: [
+      {
+        id: "1",
+        author: {
+          id: "author1",
+          name: "Alice Johnson",
+          bio: "AI Enthusiast and Researcher",
+          profileImage:
+            "https://miro.medium.com/v2/resize:fit:1100/format:webp/1*mtjwbFnS2U6LuDvciBz13g@2x.jpeg",
+        },
+        content: "Great article! Very insightful.",
+        createdAt: "2024-08-01T12:00:00Z",
+      },
+      {
+        id: "2",
+        author: {
+          id: "author1",
+          name: "Alice Johnson",
+          bio: "AI Enthusiast and Researcher",
+          profileImage:
+            "https://miro.medium.com/v2/resize:fit:1100/format:webp/1*mtjwbFnS2U6LuDvciBz13g@2x.jpeg",
+        },
+        content: "Great article! Very insightful.",
+        createdAt: "2024-08-01T12:00:00Z",
+      },
+    ],
+  },
+  {
+    id: "3",
+    title: "The Rise of Quantum Computing",
+    summary:
+      "An overview of quantum computing technology and its potential applications.",
+    content: "<p>Quantum computing is a revolutionary technology...</p>",
+    author: {
+      id: "author2",
+      name: "John Doe",
+      bio: "Tech writer and AI expert",
+      profileImage:
+        "https://miro.medium.com/v2/resize:fit:1100/format:webp/1*mtjwbFnS2U6LuDvciBz13g@2x.jpeg",
+    },
+    date: "2024-08-02T10:00:00Z",
+    category: { id: "cat2", name: "Quantum Computing" },
+    createdAt: "2024-08-02T10:00:00Z",
+    updatedAt: "2024-08-02T10:00:00Z",
+    image:
+      "https://miro.medium.com/v2/resize:fit:1100/format:webp/1*mtjwbFnS2U6LuDvciBz13g@2x.jpeg",
+    comments: [
+      {
+        id: "1",
+        author: {
+          id: "author1",
+          name: "Alice Johnson",
+          bio: "AI Enthusiast and Researcher",
+          profileImage:
+            "https://miro.medium.com/v2/resize:fit:1100/format:webp/1*mtjwbFnS2U6LuDvciBz13g@2x.jpeg",
+        },
+        content: "Great article! Very insightful.",
+        createdAt: "2024-08-01T12:00:00Z",
+      },
+      {
+        id: "2",
+        author: {
+          id: "author1",
+          name: "Alice Johnson",
+          bio: "AI Enthusiast and Researcher",
+          profileImage:
+            "https://miro.medium.com/v2/resize:fit:1100/format:webp/1*mtjwbFnS2U6LuDvciBz13g@2x.jpeg",
+        },
+        content: "Great article! Very insightful.",
+        createdAt: "2024-08-01T12:00:00Z",
+      },
+    ],
+  },
 ];
 export const categories: Category[] = [
   {
@@ -251,7 +343,7 @@ export const categories: Category[] = [
 
 const LatestArticles: React.FC = () => {
   const [page, setPage] = useState(1);
-  const [pageSize] = useState(5);
+  const [pageSize] = useState(3);
   const [allArticles] = useState<Article[]>(articles);
 
   const handlePrev = () => {
@@ -309,7 +401,7 @@ const LatestArticles: React.FC = () => {
         <div>
           <h3 className="text-xl font-bold mb-2">Featured Articles</h3>
           <ul className="space-y-2">
-            {articles.map((article, index) => (
+            {articles.slice(0, 3).map((article, index) => (
               <FeaturedArticleCard
                 key={article.id}
                 image={article.image}

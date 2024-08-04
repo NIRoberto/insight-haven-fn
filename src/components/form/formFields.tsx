@@ -17,7 +17,7 @@ const InputField: React.FC<InputFieldProps> = ({
   const [field, meta] = useField(props);
 
   return (
-    <div className="mb-4">
+    <div className="mb-4 text-left">
       <label
         className="block text-gray-700 text-sm font-bold mb-2"
         htmlFor={props.name}
@@ -119,7 +119,6 @@ const ImageUploadField: React.FC<ImageUploadFieldProps> = ({
       helpers.setValue(null); // Clear Formik field value
     }
   };
-
   return (
     <div className="bg-gray-200 p-4 rounded-xl flex items-center flex-col">
       <label className="flex items-center cursor-pointer">
@@ -150,20 +149,29 @@ const ImageUploadField: React.FC<ImageUploadFieldProps> = ({
   );
 };
 
-const Button: React.FC<ButtonProps> = ({
+interface Props extends ButtonProps {
+  label: string;
+  loading?: boolean;
+  variant?: "primary" | "secondary" | "danger";
+  className?: string;
+}
+
+const Button: React.FC<Props> = ({
   label,
-  variant = "primary",
   loading = false,
+  variant = "primary",
+  className = "",
   ...props
 }) => {
   const baseStyles =
-    "py-2 px-4 rounded-xl focus:outline-none focus:shadow-outline";
+    "py-2 px-4 rounded-xl font-semibold text-white focus:outline-none focus:shadow-outline";
   const variantStyles = {
-    primary: "bg-blue-500 hover:bg-blue-700 text-white",
-    secondary: "bg-gray-500 hover:bg-gray-700 text-white",
+    primary: "bg-btnHover hover:bg-buttonBgtext-white",
+    secondary: "bg-btn-gradient hover:bg-btn-gradient text-white",
     danger: "bg-red-500 hover:bg-red-700 text-white",
   };
-  const combinedStyles = `${baseStyles} ${variantStyles[variant]} flex items-center justify-center`;
+
+  const combinedStyles = `${baseStyles} ${variantStyles[variant]} ${className}`;
 
   return (
     <button className={combinedStyles} disabled={loading} {...props}>
