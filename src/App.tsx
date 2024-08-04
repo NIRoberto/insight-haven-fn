@@ -10,7 +10,6 @@ import Navbar from "./components/layout/Navbar";
 import Footer from "./components/layout/Footer";
 import Home from "./pages/home";
 import ArticlePage from "./pages/singleArticle";
-
 import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import LoginPage from "./pages/auth/login";
@@ -19,6 +18,8 @@ import DashboardLayout from "./components/layout/dashboardLayout";
 import Categories from "./pages/dashboard/categories";
 import Articles from "./pages/dashboard/articles";
 import Users from "./pages/dashboard/users";
+import MainDashboard from "./pages/dashboard/mainDashboard";
+import Settings from "./pages/dashboard/settings";
 
 const AuthLayout: React.FC = () => {
   return (
@@ -96,10 +97,9 @@ const router = createBrowserRouter([
     element: <DashboardLayout />,
     children: [
       {
-        path: "",
-        element: <DashboardPage />,
+        path: "stat",
+        element: <MainDashboard />,
       },
-
       {
         path: "articles",
         element: <Articles />,
@@ -111,7 +111,7 @@ const router = createBrowserRouter([
       },
       {
         path: "settings",
-        element: <DashboardPage />,
+        element: <Settings />,
       },
       {
         path: "users",
@@ -138,16 +138,6 @@ const router = createBrowserRouter([
     ],
   },
 ]);
-
-function DashboardPage() {
-  return (
-    <div>
-      <h1 className="text-4xl font-bold text-center text-heading font-raleway mt-20">
-        Dashboard Page
-      </h1>
-    </div>
-  );
-}
 
 function NotFoundPage() {
   return (
