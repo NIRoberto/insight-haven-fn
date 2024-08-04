@@ -39,7 +39,7 @@ const AuthLayout: React.FC = () => {
       {/* Main Content */}
       <main className="flex-grow flex items-center justify-center py-4 px-4 sm:px-6 lg:px-8">
         <div className="max-w-md w-full bg-white shadow-lg rounded-xl p-1">
-          <h1 className="text-3xl font-bold text-heading text-center mb-2">
+          <h1 className=" font-bold text-heading text-center mb-2">
             <Outlet />
           </h1>
         </div>
