@@ -44,14 +44,14 @@ const Navbar: React.FC = () => {
         <div className="hidden lg:flex items-center space-x-6">
           {isAuthenticated ? (
             <Link
-              to="/profile"
+              to="/auth/profile"
               className="py-2 px-4 rounded-md bg-btnHover text-white hover:bg-btnHoverDark transition-colors"
             >
               Profile
             </Link>
           ) : (
             <Link
-              to="/login"
+              to="/auth/login"
               className="py-2 px-4 rounded-md bg-btnHover text-white hover:bg-btnHoverDark transition-colors"
             >
               Login
